@@ -1,0 +1,7 @@
+parameters:
+#    prolix_soclone.example.class: Prolix\SocloneBundle\Example
+
+services:
+#    prolix_soclone.example:
+#        class: %prolix_soclone.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

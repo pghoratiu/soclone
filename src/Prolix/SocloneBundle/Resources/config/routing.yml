@@ -1,0 +1,19 @@
+ProlixSocloneBundle_homepage:
+    pattern:  /{page}/{limit}
+    defaults: { _controller: ProlixSocloneBundle:Question:index, page: 1, limit: 2 }
+    requirements:
+        _method:  GET
+
+ProlixSocloneBundle_question_show:
+    pattern: /question/{id}
+    defaults: { _controller: ProlixSocloneBundle:Question:show }
+    requirements:
+        _method: GET
+        id: \d+
+
+ProlixSocloneBundle_question_create:
+    pattern:  /question/{question_id}
+    defaults: { _controller: ProlixSocloneBundle:Question:create }
+    requirements:
+        _method:  POST
+        blog_id: \d+

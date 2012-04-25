@@ -1,0 +1,30 @@
+{% extends 'ProlixSocloneBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/makerlabspager/css/clean.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/makerlabspager/css/round.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+    {% if pager.hasResults %}
+      {% for question in pager.getResults %}
+        <div class="question">
+            <div class="date"><time datetime="{{ question.created|date('c') }}">{{ question.created|date('l, F j, Y') }}</time></div>
+            <header>
+                <h2><a href="{{ path('ProlixSocloneBundle_question_show', { 'id': question.id }) }}">{{ question.title }}</a></h2>
+            </header>
+
+            <footer class="meta">
+                <p>Comments: -</p>
+                <p>Posted by <span class="highlight">{{question.author}}</span> at {{ question.created|date('h:iA') }}</p>
+            </footer>
+        </div>
+      {% endfor %}
+      {% if pager.isPaginable %}
+        {{ paginate(pager, 'ProlixSocloneBundle_homepage', {'limit': app.request.get('limit')}) }}
+      {% endif %}
+    {% else %}
+        <p>No questions found</p>
+    {% endif %}
+{% endblock %}

@@ -2,6 +2,9 @@
 
 require_once __DIR__.'/../app/bootstrap.php.cache';
 require_once __DIR__.'/../app/AppKernel.php';
+
+umask(0000);
+
 //require_once __DIR__.'/../app/AppCache.php';
 
 use Symfony\Component\HttpFoundation\Request;

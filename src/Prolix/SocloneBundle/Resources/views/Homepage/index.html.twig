@@ -1,0 +1,19 @@
+{% extends 'ProlixSocloneBundle::layout.html.twig' %}
+
+{% block body %}
+  {% for question in questions %}
+    <div class="question">
+      <div class="date"><time datetime="{{ question.created|date('c') }}">{{ question.created|date('l, F j, Y') }}</time></div>
+        <header>
+          <h2><a href="{{ path('ProlixSocloneBundle_question_show', { 'id': question.id }) }}">{{ question.title }}</a></h2>
+        </header>
+
+        <footer class="meta">
+          <p>Comments: -</p>
+          <p>Posted by <span class="highlight">{{question.userDisplayName}}</span> at {{ question.created|date('h:iA') }}</p>
+        </footer>
+     </div>
+  {% else %}
+        <p>No questions found</p>
+  {% endfor %}
+{% endblock %}

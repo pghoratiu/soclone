@@ -12,8 +12,6 @@ class QuestionController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
         $qb = $em->getRepository('ProlixSocloneBundle:Question')->createQueryBuilder('q');
-        $adapter = new DoctrineOrmAdapter($qb);
-        $pager = new Pager($adapter, array('page' => $page, 'limit' => $limit));
 
         return $this->render('ProlixSocloneBundle:Question:index.html.twig', array(
             'pager' => $pager

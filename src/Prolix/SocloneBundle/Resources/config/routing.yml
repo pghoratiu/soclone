@@ -1,8 +1,14 @@
 ProlixSocloneBundle_homepage:
-    pattern:  /{page}/{limit}
-    defaults: { _controller: ProlixSocloneBundle:Question:index, page: 1, limit: 2 }
+    pattern:  /
+    defaults: { _controller: ProlixSocloneBundle:Homepage:index}
     requirements:
         _method:  GET
+
+ProlixSocloneBundle_question_index:
+    pattern: /question
+    defaults: { _controller: ProlixSocloneBundle:Question:index }
+    requirements:
+        _method: GET
 
 ProlixSocloneBundle_question_show:
     pattern: /question/{id}

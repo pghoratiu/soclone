@@ -19,7 +19,9 @@ class QuestionRepository extends EntityRepository
                ->addOrderBy('b.created', 'DESC');
 
     if (false === is_null($limit))
-        $qb->setMaxResults($limit);
+      $limit = 20;
+  
+    $qb->setMaxResults($limit);
 
     return $qb->getQuery()->getResult();
   }

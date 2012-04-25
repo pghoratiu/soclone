@@ -27,23 +27,33 @@ class Question
     /**
      * @ORM\Column(type="text")
      */
-    protected $description;
-
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    protected $author;
+    protected $body;
 
     /**
      * @ORM\Column(type="integer")
      */
-    protected $answer_nr;
+    protected $user_id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $user_display_name;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $answer_count;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\OneToOne(targetEntity="Answer")
+     * @ORM\JoinColumn(name="accepted_answer_id", referencedColumnName="id")
+     */
+    protected $accepted_answer_id;
 
     /*
      * @ORM\OneToMany (targetEntity="Answer", mappedBy="question")
      */
-
     protected $answers;
 
     /**
@@ -77,6 +87,7 @@ class Question
        $this->setUpdated(new \DateTime());
     }
 
+
     /**
      * Get id
      *
@@ -108,64 +119,103 @@ class Question
     }
 
     /**
-     * Set description
+     * Set body
      *
-     * @param string $description
+     * @param text $body
      */
-    public function setDescription($description)
+    public function setBody($body)
     {
-        $this->description = $description;
+        $this->body = $body;
     }
 
     /**
-     * Get description
+     * Get body
+     *
+     * @return text
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * Set user_id
+     *
+     * @param integer $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+    }
+
+    /**
+     * Get user_id
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set user_display_name
+     *
+     * @param string $userDisplayName
+     */
+    public function setUserDisplayName($userDisplayName)
+    {
+        $this->user_display_name = $userDisplayName;
+    }
+
+    /**
+     * Get user_display_name
      *
      * @return string
      */
-    public function getDescription()
+    public function getUserDisplayName()
     {
-        return $this->description;
-    }
-
-
-    /**
-     * Set answer number
-     *
-     * @param int $answer_nr
-     */
-    public function setAnswerNr($answer_nr)
-    {
-        $this->answer_nr = $answer_nr;
+        return $this->user_display_name;
     }
 
     /**
-     * Get answer number
+     * Set answer_count
      *
-     * @return string
+     * @param integer $answerCount
      */
-    public function getAnswerNr()
+    public function setAnswerCount($answerCount)
     {
-        return $this->answer_nr;
+        $this->answer_count = $answerCount;
     }
 
     /**
-     * Set author
+     * Get answer_count
      *
-     * @param string $author
+     * @return integer
      */
-    public function setAuthor($author)
+    public function getAnswerCount()
     {
-        $this->author = $author;
+        return $this->answer_count;
     }
 
     /**
-     * Get author
+     * Set accepted_answer_id
      *
-     * @return string
+     * @param integer $acceptedAnswerId
      */
-    public function getAuthor()
+    public function setAcceptedAnswerId($acceptedAnswerId)
     {
-        return $this->author;
+        $this->accepted_answer_id = $acceptedAnswerId;
+    }
+
+    /**
+     * Get accepted_answer_id
+     *
+     * @return integer
+     */
+    public function getAcceptedAnswerId()
+    {
+        return $this->accepted_answer_id;
     }
 
     /**

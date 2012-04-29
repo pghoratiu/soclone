@@ -7,7 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Prolix\SocloneBundle\Repository\QuestionRepository")
- * @ORM\Table(name="question")
+ * @ORM\Table(name="question", indexes={
+ *   @ORM\index(name="answer_count", columns={"answer_count"}),
+ *   @ORM\index(name="created", columns={"created"}),
+ *   @ORM\index(name="updated", columns={"updated"})});
  * @ORM\HasLifecycleCallbacks()
  */
 class Question
@@ -30,12 +33,12 @@ class Question
     protected $body;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $user_id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $user_display_name;
 
@@ -87,6 +90,15 @@ class Question
        $this->setUpdated(new \DateTime());
     }
 
+    /**
+     * Set id
+     *
+     * @param integer $id
+     */
+    public function setId($id)
+    {
+        return $this->id;
+    }
 
     /**
      * Get id

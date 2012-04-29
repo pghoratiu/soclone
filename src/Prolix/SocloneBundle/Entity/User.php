@@ -19,6 +19,12 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\Column(type="string", length="255")
+     *
+     */
+    protected $display_name;
+
     public function __construct()
     {
         parent::__construct();
@@ -42,10 +48,30 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set display_name
+     *
+     * @param string $displayName
+     */
+    public function setDisplayName($displayName)
+    {
+        $this->display_name = $displayName;
+    }
+
+    /**
+     * Get display_name
+     *
+     * @return string 
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
     }
 }
